@@ -11,7 +11,7 @@ apply plugin: 'forge'
 apply plugin: 'maven-publish'
 apply plugin: 'curseforge'
 
-ext.buildnumber = 0
+ext.buildnumber = 38
 if (System.getenv('BUILD_NUMBER') != null)
     project.buildnumber = System.getenv('BUILD_NUMBER')
 else
@@ -108,9 +108,9 @@ if (JavaVersion.current().isJava8Compatible()) {
     }
 }
 
-build.dependsOn sourceJar, deobfJar, apiJar, javadoc
+build.dependsOn sourceJar, deobfJar, apiJar//, javadoc
 
-publishing {
+/*publishing {
     tasks.publish.dependsOn 'build'
     publications {
         mavenJava(MavenPublication) {
@@ -127,9 +127,9 @@ publishing {
             maven { url mavendir }
         }
     }
-}
+}*/
 
-curse {
+/*curse {
     dependsOn 'reobf'
     
     onlyIf {
@@ -141,7 +141,7 @@ curse {
     changelog = System.getenv("CHANGELOG").equals("none") ? project.changelog : System.getenv("CHANGELOG")
     releaseType = project.hasProperty('mod_appendix') ? "${mod_appendix}".toString() : 'release'
     additionalArtifact deobfJar, sourceJar, apiJar
-}
+}*/
 
 task checkTranslations << {
     Map<String, String> mapen = new HashMap<String, String>()

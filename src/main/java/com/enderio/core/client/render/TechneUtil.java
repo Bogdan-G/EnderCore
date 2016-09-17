@@ -218,7 +218,8 @@ public class TechneUtil {
     Map<String, GroupObject> res = Maps.newHashMap();
 
     for (Map.Entry<String, ModelRenderer> e : parts.entrySet()) {
-      GroupObject obj = bakeModel(e.getValue(), model, scale, m, rotateYFirst).get(0);
+      List<GroupObject> res_temp = bakeModel(e.getValue(), model, scale, m, rotateYFirst);
+      GroupObject obj = res_temp.size() == 0 ? new GroupObject("", GL11.GL_QUADS) : res_temp.get(0);
       res.put(e.getKey(), obj);
     }
 
